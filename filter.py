@@ -13,8 +13,7 @@ class NaiveFilter():
 
     very simple filter implementation
     
-    >>> f = Filter()
-    >>> f = Filter()
+    >>> f = NaiveFilter()
     >>> f.add("sexy")
     >>> f.filter("hello sexy baby")
     hello **** baby
@@ -38,7 +37,7 @@ class BSFilter:
 
     Use Back Sorted Mapping to reduce replacement times
     
-    >>> f = Filter()
+    >>> f = BSFilter()
     >>> f.add("sexy")
     >>> f.filter("hello sexy baby")
     hello **** baby
@@ -86,7 +85,7 @@ class DFAFilter():
 
     Use DFA to keep algorithm perform constantly
     
-    >>> f = Filter()
+    >>> f = DFAFilter()
     >>> f.add("sexy")
     >>> f.filter("hello sexy baby")
     hello **** baby
