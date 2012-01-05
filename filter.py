@@ -23,10 +23,10 @@ class NaiveFilter():
     
     def parse(self,path):
         for keyword in open(path):
-            self.keywords.add(keyword.strip().decode('utf-8'))
+            self.keywords.add(keyword.strip().decode('utf-8').lower())
 
     def filter(self,message,repl="*"):
-        message = unicode(message)
+        message = unicode(message).lower()
         for kw in self.keywords:
             message = message.replace(kw,repl)
         return message
@@ -51,6 +51,7 @@ class BSFilter:
     def add(self,keyword):
         if not isinstance(keyword,unicode):
             keyword = keyword.decode('utf-8')
+        keyword = keyword.lower()
         if keyword not in self.kwsets:
             self.keywords.append(keyword)
             self.kwsets.add(keyword)
@@ -70,6 +71,7 @@ class BSFilter:
     def filter(self,message,repl="*"):
         if not isinstance(message,unicode):
             message = message.decode('utf-8')
+        message = message.lower()
         for word in message.split():
             if self.pat_en.search(word):
                 for index in self.bsdict[word]:
@@ -97,6 +99,7 @@ class DFAFilter():
     def add(self,keyword):
         if not isinstance(keyword,unicode):
             keyword = keyword.decode('utf-8')
+        keyword = keyword.lower()
         chars = keyword.strip()
         if not chars:
             return
@@ -125,7 +128,7 @@ class DFAFilter():
     def filter(self,message,repl="*"):
         if not isinstance(message,unicode):
             message = message.decode('utf-8')
-
+        message = message.lower()
         ret = []
         start = 0
         while start < len(message):
